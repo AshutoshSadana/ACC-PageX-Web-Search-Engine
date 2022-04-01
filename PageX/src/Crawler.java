@@ -13,7 +13,7 @@ import org.apache.commons.io.FilenameUtils;
 
 public class Crawler {
 	public static final int maxDepth=2;
-	public static HashMap<String, String> urlDict = new HashMap<String, String>();
+	public static HashMap<String, String> urlDict = new HashMap<String, String>(); // This will store url to filename mapping
 	public static void webCrawl(int depth,int count, String url,ArrayList<String> visited) {
 		
 		if (depth <= maxDepth && count>=0) {
@@ -122,12 +122,5 @@ public class Crawler {
 		
 	}
 	
-//	public static void main(String[] args) {
-//		// TODO Auto-generated method stub
-//		String url = "https://en.wikipedia.org/";
-//		webCrawl(1,url,new ArrayList<String>());
-////		System.out.println("Dictionary!!!!\n");
-////		System.out.println(urlDict.get("40.txt"));
-//	}
 
 }
