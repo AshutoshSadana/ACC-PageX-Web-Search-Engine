@@ -10,6 +10,10 @@ public class SearchEngineRunner {
 		System.out.println("Enter the word to be searched");
 		String word=sc.nextLine();
 		SearchingWord.searchWord(word);
+		
+		System.out.println("Enter a word to find alternate suggesions for it");
+		word=sc.nextLine();
+		WordSuggestions.suggestWord(word);
 	}
 
 }
