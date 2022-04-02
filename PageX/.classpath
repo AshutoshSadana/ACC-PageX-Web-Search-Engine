@@ -16,5 +16,6 @@
 	<classpathentry kind="lib" path="drivers/Memory Management"/>
 	<classpathentry kind="lib" path="drivers/Search Trees"/>
 	<classpathentry kind="lib" path="drivers/Text Processing"/>
+	<classpathentry kind="lib" path="drivers/Algorithm Design"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
