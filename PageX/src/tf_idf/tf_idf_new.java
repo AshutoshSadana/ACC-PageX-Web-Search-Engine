@@ -51,7 +51,7 @@ public class tf_idf_new {
 	public static double idf_score(Integer documents_containing_key_word, Integer number_of_files) {
 		double idf_score=0.0;
 		if(documents_containing_key_word!=0) {
-		idf_score=1+Math.log(number_of_files / documents_containing_key_word);
+		idf_score=Math.log(number_of_files / documents_containing_key_word);
 		}
 		return idf_score;
 		
