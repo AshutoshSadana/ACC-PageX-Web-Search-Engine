@@ -94,22 +94,4 @@ public class LRUCache {
         }
 
     }
-    //public static void main(String[] args)   
-    //  {  
-    //     
-    //    cache.putElementInCache(1, "Value_1");  
-    //    cache.putElementInCache(2, "Value_2");  
-    //    cache.putElementInCache(3, "Value_3");  
-    //    cache.putElementInCache(4, "Value_4");  
-    //    System.out.println(cache.getElementFromCache(2));  
-    //    System.out.println();    
-    //    System.out.println(q);  
-    //    System.out.println();  
-    //    System.out.println(cache.getElementFromCache(5));  
-    //    cache.putElementInCache(5,"Value_5");  
-    //    System.out.println();  
-    //    System.out.println(q);  
-    //    System.out.println();  
-    //    cache.display();
-    //   }  
 }
