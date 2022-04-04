@@ -9,65 +9,7 @@ import java.util.*;
 import tf_idf.Count_heap;
 import Caching.LRUCache;
 import org.apache.commons.io.FileUtils;
-//public class SearchEngineRunner {
-//
-//	public static void main(String[] args) throws IOException {
-//		List<String>ranking_list=new ArrayList<String>();
-//		String word="";
-//		
-//		Arrays.stream(new File("./htmlpages/").listFiles()).forEach(File::delete);
-//		Arrays.stream(new File("./htmlToTextPages/").listFiles()).forEach(File::delete);
-//		Arrays.stream(new File("./cached_files/").listFiles()).forEach(File::delete);
-//		System.out.println("Done");
-//		
-//		HashMap<String, String> urlDict=Crawler.webCrawl(1,5,"https://en.wikipedia.org/wiki/Computer",new ArrayList<String>());
-//		System.out.println(Arrays.asList(urlDict)); 
-//		Scanner sc=new Scanner(System.in);
-//		System.out.println("option 1 for searching word");
-//		System.out.println("option 2 for searching word in cache");
-//		System.out.println("option 3 for providing sugesstions to word");
-//		Integer input_case = sc.nextInt();
-//		System.out.println("Enter the word to be searched");
-//	  	String search_word=sc.nextLine();
-//		ranking_list=SearchingWord.searchWord(search_word,"./htmlToTextPages/");
-//		System.out.println("rankingList");
-//		for(String fruit:ranking_list)  
-//			  System.out.println(fruit);
-//		switch (input_case) {
-//		  case 1:
-//			  	System.out.println("Enter the word to be searched");
-//			  	word=sc.nextLine();
-//				ranking_list=SearchingWord.searchWord(word,"./htmlToTextPages/");
-//				System.out.println("rankingList");
-//				for(String fruit:ranking_list)  
-//					  System.out.println(fruit);
-//				break;
-//		  case 2:
-//			  	LRUCache cache = new LRUCache();
-//			  	System.out.println("Enter number of pages for caching purpose which should be less than   "+ranking_list.size());
-//				String total_cach_pages=sc.nextLine();
-//				for(int i=0;i<Integer.parseInt(total_cach_pages);i++) {
-//					String index=sc.nextLine();
-//					cache.putElementInCache(Integer.parseInt(index), ranking_list.get(Integer.parseInt(index)));
-//					}
-//				cache.populate_cache_pages();
-//				cache.add_cached_pages(urlDict);
-//				System.out.println("Enter word to be searched in cache memory");
-//				String cache_word=sc.nextLine();
-//				System.out.println("rankingList");
-//				ranking_list=SearchingWord.searchWord(cache_word,"./cached_files/");
-//				System.out.println("rankingList");
-//				for(String fruit:ranking_list)  
-//					  System.out.println(fruit);
-//				break;
-//		  case 3:
-//			  	System.out.println("Enter a word to find alternate suggesions for it");
-//				word=sc.nextLine();
-//				WordSuggestions.suggestWord(word);
-//				break;
-//		}
-//		}
-//	}
+
 
 public class SearchEngineRunner {
 	
@@ -158,36 +100,10 @@ public class SearchEngineRunner {
 			  end_loop=1;
 			  	
 		}
-//		Scanner sc_4=new Scanner(System.in);
 		System.out.println("Enter your option");
 		input_case = sc.nextInt();
 		}
-//		System.out.println("Enter the word to be searched");
-//		String word=sc.nextLine();
-//		ranking_list=SearchingWord.searchWord(word,"./htmlToTextPages/");
-//		
-//
-//		System.out.println("rankingList");
-//		for(String fruit:ranking_list)  
-//			  System.out.println(fruit);  
-//		LRUCache cache = new LRUCache();
-//		System.out.println("Enter number of pages for caching purpose which should be less than   "+ranking_list.size());
-//		String total_cach_pages=sc.nextLine();
-//		
-//		for(int i=0;i<Integer.parseInt(total_cach_pages);i++) {
-//			String index=sc.nextLine();
-//			cache.putElementInCache(Integer.parseInt(index), ranking_list.get(Integer.parseInt(index)));
-//			
-//			
-//		}
-//		
-//		cache.populate_cache_pages();
-//		cache.add_cached_pages(urlDict);
-//		System.out.println("Enter word to be searched in cache memory");
-//		String cache_word=sc.nextLine();
-//		System.out.println("rankingList");
-//		ranking_list=SearchingWord.searchWord(cache_word,"./cached_files/");
-		 
+
 	}
 	
 	
