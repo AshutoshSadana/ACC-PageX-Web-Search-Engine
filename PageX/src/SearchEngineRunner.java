@@ -36,9 +36,9 @@ public class SearchEngineRunner {
 		Arrays.stream(new File("./htmlpages/").listFiles()).forEach(File::delete);
 		Arrays.stream(new File("./htmlToTextPages/").listFiles()).forEach(File::delete);
 		Arrays.stream(new File("./cached_files/").listFiles()).forEach(File::delete);
-		System.out.println("Done");
+		System.out.println("Previous files cleared!");
 		
-		HashMap<String, String> urlDict=Crawler.webCrawl(1,5,"https://en.wikipedia.org/wiki/Computer",new ArrayList<String>());
+		HashMap<String, String> urlDict=Crawler.webCrawl(1,10,"https://geeksforgeeks.org/",new ArrayList<String>());
 		System.out.println(Arrays.asList(urlDict)); 
 		Scanner sc=new Scanner(System.in);
 		System.out.println("option 1 for searching word");
@@ -57,9 +57,8 @@ public class SearchEngineRunner {
 			  	ranking_list_1=search_function(search_word,ranking_list_1,"./htmlToTextPages/");
 				break;
 		  case 2:
-			  System.out.println("hiii");
 			  for(String page:ranking_list_1)
-				{System.out.println("hii");
+				{
 					if(page!="sample")
 					  System.out.println(page);
 				}
@@ -95,6 +94,7 @@ public class SearchEngineRunner {
 				break;
 		  case 4:
 			  end_loop=1;
+
 			  	
 		}
 		System.out.println("Enter your option");

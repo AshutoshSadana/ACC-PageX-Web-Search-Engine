@@ -54,7 +54,7 @@ public class SearchingWord {
 	
 	public static int searchBruteForce(String word, String pattern) {
 
-		int offset=textprocessing.BruteForceMatch.search1(word, pattern);
+		int offset= BruteForceMatch.search1(word, pattern);
 		return offset;
 	}
 	
