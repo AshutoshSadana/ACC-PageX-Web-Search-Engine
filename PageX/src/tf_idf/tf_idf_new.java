@@ -12,6 +12,13 @@ import tf_idf.Count_heap.Node;
 
 public class tf_idf_new {
 	static int normalizing_factor=100;
+	/**
+     * This method populates heap key is file_name and value is tf_idf_score
+     *
+     * @param tf_idf_score
+     * @author AchyuthBalaji
+     */
+	
         
     public static List<String> populate_heap(HashMap<String, Double> tf_idf_score) {
 		List<String>ranking_list=new ArrayList<String>();
@@ -35,6 +42,13 @@ public class tf_idf_new {
 		return ranking_list;
 		
     }
+    /**
+     * This method computes Term Frequency score
+     *
+     * @param key_word_count
+     * @param total_number_of_words_count
+     * @author AchyuthBalaji
+     */
 	
 	public static double tf_score(int key_word_count,int total_number_of_words_count) {
 
@@ -47,6 +61,13 @@ public class tf_idf_new {
 		
 		return tf_score;
 	}
+	/**
+     * This method computes IDF score
+     *
+     * @param documents_containing_key_word
+     * @param number_of_files
+     * @author AchyuthBalaji
+     */
 	
 	public static double idf_score(Integer documents_containing_key_word, Integer number_of_files) {
 		double idf_score=0.0;
@@ -56,6 +77,15 @@ public class tf_idf_new {
 		return idf_score;
 		
 	}
+	
+	/**
+     * This method computes tf_idf score and is stored in Hash Map
+     *
+     * @param key_word_count
+     * @param complete_word_count
+     * @param documents_containing_key_word
+     * @author AchyuthBalaji
+     */
 	public static HashMap<String,Double> compute_tf_idf(HashMap<String, Integer> key_word_count,
 			HashMap<String, Integer> complete_word_count,
 			Integer documents_containing_key_word){
