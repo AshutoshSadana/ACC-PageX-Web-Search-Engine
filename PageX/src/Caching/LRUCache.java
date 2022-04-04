@@ -33,20 +33,10 @@ class Cache {
  * @author piyushmehta
  */
 public class LRUCache {
-    static Deque < Integer > q = new LinkedList < > ();
-    static LRUCache cache = new LRUCache();
-    static Map < Integer, Cache > map = new HashMap < > ();
+    static Deque <Integer> q = new LinkedList<>();
+    static Map <Integer, Cache> map = new HashMap<>();
     int CACHE_CAPACITY = 4;
-    static List < String > cached_file_names = new ArrayList < String > ();
-    public String getElementFromCache(int key) {
-        if (map.containsKey(key)) {
-            Cache current = map.get(key);
-            q.remove(current.key);
-            q.addFirst(current.key);
-            return current.value;
-        }
-        return "Not exist";
-    }
+    static List <String> cached_file_names = new ArrayList<String>();
 
     /**
      * This method adds an element to the cache.
