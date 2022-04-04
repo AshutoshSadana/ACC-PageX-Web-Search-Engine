@@ -14,7 +14,7 @@ import org.apache.commons.io.FilenameUtils;
 public class Crawler {
 	public static final int maxDepth=2;
 	public static HashMap<String, String> urlDict = new HashMap<String, String>(); // This will store url to filename mapping
-	public static void webCrawl(int depth,int count, String url,ArrayList<String> visited) {
+	public static HashMap<String, String> webCrawl(int depth,int count, String url,ArrayList<String> visited) {
 		
 		if (depth <= maxDepth && count>=0) {
 			Document doc = request(url,visited);
@@ -30,6 +30,7 @@ public class Crawler {
 			}
 			}
 		}
+		return urlDict;
 
 			
 	}
