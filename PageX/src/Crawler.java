@@ -11,6 +11,9 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.apache.commons.io.FilenameUtils;
 
+/**
+ * @author Ashutosh Sadana
+ */
 public class Crawler {
 	public static final int maxDepth=2;
 	public static HashMap<String, String> urlDict = new HashMap<String, String>(); // This will store url to filename mapping

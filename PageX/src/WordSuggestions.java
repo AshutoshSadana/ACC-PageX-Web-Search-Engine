@@ -8,6 +8,9 @@ import java.util.StringTokenizer;
 
 import algorithmDesign.*;
 
+/**
+ * @author Abhiraj Singh
+ */
 public class WordSuggestions {
 	public static ArrayList <String> similarWords = new ArrayList<>();
 	

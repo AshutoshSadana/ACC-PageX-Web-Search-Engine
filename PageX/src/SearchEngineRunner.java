@@ -39,7 +39,7 @@ public class SearchEngineRunner {
 		System.out.println("Previous files cleared!");
 		
 		HashMap<String, String> urlDict=Crawler.webCrawl(1,10,"https://geeksforgeeks.org/",new ArrayList<String>());
-		System.out.println(Arrays.asList(urlDict)); 
+		//System.out.println(Arrays.asList(urlDict)); 
 		Scanner sc=new Scanner(System.in);
 		System.out.println("option 1 for searching word");
 		System.out.println("option 2 for searching word in cache");
