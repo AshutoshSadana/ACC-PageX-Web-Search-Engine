@@ -1,20 +1,22 @@
 package Caching;
 
-import java.util.Deque;
+import org.apache.commons.io.FileUtils;
+
 import java.io.File;
 import java.io.IOException;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
 
-import org.apache.commons.io.FileUtils;
+/**
+ * This class implements a Least Recently Used (LRU) cache.
+ *  The cache is implemented as a hash map.
+ *  The cache is limited to a maximum size.
+ *  The cache is ordered by the time of the last access.
+ *  The least recently used element is the first element in the list.
+ *  The most recently used element is the last element in the list.
+ *
+ * @author piyushmehta
+ */
 class Cache {
     int key;
     String value;
@@ -23,6 +25,13 @@ class Cache {
         this.value = value;
     }
 }
+
+/**
+ * This class implements a Least Recently Used (LRU) cache.
+ * The cache is implemented as a hash map.
+ *
+ * @author piyushmehta
+ */
 public class LRUCache {
     static Deque < Integer > q = new LinkedList < > ();
     static LRUCache cache = new LRUCache();
@@ -38,6 +47,14 @@ public class LRUCache {
         }
         return "Not exist";
     }
+
+    /**
+     * This method adds an element to the cache.
+     * If the cache is full, the least recently used element is removed.
+     * @author piyushmehta
+     * @param key
+     * @param value
+     */
     public void putElementInCache(int key, String value) {
         if (map.containsKey(key)) {
             Cache curr = map.get(key);
@@ -52,10 +69,16 @@ public class LRUCache {
         q.addFirst(newItem.key);
         map.put(key, newItem);
     }
+
+    /**
+     *  This method prints the contents of the cache.
+     *  The cache is printed in the order of the time of the last access.
+     *
+     * @author piyushmehta
+     */
     public void populate_cache_pages() {
         for (Integer item: q) {
             Cache current = map.get(item);
-            //         System.out.println(current.value);
             cached_file_names.add(current.value);
         }
         System.out.println("cached_file_names");
@@ -63,6 +86,14 @@ public class LRUCache {
             System.out.println(fruit);
 
     }
+
+    /**
+     * This method prints the contents of the cache.
+     * @param Source
+     * @param Destination
+     * @throws IOException
+     * @author piyushmehta
+     */
     public void copy_files(String Source, String Destination) {
 
         File source = new File(Source);
@@ -73,13 +104,18 @@ public class LRUCache {
             e.printStackTrace();
         }
     }
+
+    /**
+     * This method add the contents of the cache.
+     *
+     * @param urlDict
+     * @author piyushmehta
+     */
     public void add_cached_pages(HashMap < String, String > urlDict) {
         String file_source = "./htmlToTextPages/";
         String File_destination = "./cached_files/";
         for (Entry < String, String > entry_1: urlDict.entrySet()) {
 
-            // if give value is equal to value from entry
-            // print the corresponding key
             for (String element: cached_file_names) {
 
                 if (entry_1.getValue() == element) {
