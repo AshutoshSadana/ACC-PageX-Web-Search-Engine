@@ -33,10 +33,11 @@ class Cache {
  * @author piyushmehta
  */
 public class LRUCache {
-    static Deque <Integer> q = new LinkedList<>();
+
     static Map <Integer, Cache> map = new HashMap<>();
+    static Deque <Integer> deque = new LinkedList<>();
     int CACHE_CAPACITY = 4;
-    static List <String> cached_file_names = new ArrayList<String>();
+    static List <String> cachedFileNames = new ArrayList<String>();
 
     /**
      * This method adds an element to the cache.
@@ -48,15 +49,15 @@ public class LRUCache {
     public void putElementInCache(int key, String value) {
         if (map.containsKey(key)) {
             Cache curr = map.get(key);
-            q.remove(curr.key);
+            deque.remove(curr.key);
         } else {
-            if (q.size() == CACHE_CAPACITY) {
-                int temp = q.removeLast();
-                map.remove(temp);
+            if (deque.size() == CACHE_CAPACITY) {
+                int tempInt = deque.removeLast();
+                map.remove(tempInt);
             }
         }
         Cache newItem = new Cache(key, value);
-        q.addFirst(newItem.key);
+        deque.addFirst(newItem.key);
         map.put(key, newItem);
     }
 
@@ -66,13 +67,13 @@ public class LRUCache {
      *
      * @author piyushmehta
      */
-    public void populate_cache_pages() {
-        for (Integer item: q) {
+    public void populateCachePages() {
+        for (Integer item: deque) {
             Cache current = map.get(item);
-            cached_file_names.add(current.value);
+            cachedFileNames.add(current.value);
         }
-        System.out.println("cached_file_names");
-        for (String fruit: cached_file_names)
+        System.out.println("cached pages are: " + cachedFileNames);
+        for (String fruit: cachedFileNames)
             System.out.println(fruit);
 
     }
@@ -84,12 +85,12 @@ public class LRUCache {
      * @throws IOException
      * @author piyushmehta
      */
-    public void copy_files(String Source, String Destination) {
+    public void copyFiles(String Source, String Destination) {
 
         File source = new File(Source);
-        File dest = new File(Destination);
+        File destination = new File(Destination);
         try {
-            FileUtils.copyFile(source, dest);
+            FileUtils.copyFile(source, destination);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -101,18 +102,18 @@ public class LRUCache {
      * @param urlDict
      * @author piyushmehta
      */
-    public void add_cached_pages(HashMap < String, String > urlDict) {
-        String file_source = "./htmlToTextPages/";
-        String File_destination = "./cached_files/";
-        for (Entry < String, String > entry_1: urlDict.entrySet()) {
+    public void addCachedPages(HashMap < String, String > urlDict) {
+        String fileSource = "./htmlToTextPages/";
+        String fileDestination = "./cached_files/";
+        for (Entry < String, String > entry: urlDict.entrySet()) {
 
-            for (String element: cached_file_names) {
+            for (String element: cachedFileNames) {
 
-                if (entry_1.getValue() == element) {
-                    System.out.println("The key for value " + entry_1.getKey());
-                    String s_file_name = file_source + entry_1.getKey();
-                    String d_file_name = File_destination + entry_1.getKey();
-                    copy_files(s_file_name, d_file_name);
+                if (entry.getValue() == element) {
+                    System.out.println("The key for value " + entry.getKey());
+                    String s_file_name = fileSource + entry.getKey();
+                    String d_file_name = fileDestination + entry.getKey();
+                    copyFiles(s_file_name, d_file_name);
                     break;
 
                 }

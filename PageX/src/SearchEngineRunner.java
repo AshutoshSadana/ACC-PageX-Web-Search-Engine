@@ -2,13 +2,10 @@
 import java.io.File;
 
 import java.io.IOException;
-import java.util.Map.Entry;
 
-import org.apache.commons.io.FileUtils;
 import java.util.*;
-import tf_idf.Count_heap;
+
 import Caching.LRUCache;
-import org.apache.commons.io.FileUtils;
 
 
 public class SearchEngineRunner {
@@ -76,8 +73,8 @@ public class SearchEngineRunner {
 					Integer index=sc_2.nextInt();
 					cache.putElementInCache(index, ranking_list_1.get(index));
 					}
-				cache.populate_cache_pages();
-				cache.add_cached_pages(urlDict);
+				cache.populateCachePages();
+				cache.addCachedPages(urlDict);
 				Scanner sc_5=new Scanner(System.in);
 				System.out.println("Enter word to be searched in cache memory");
 				String cache_word=sc_5.nextLine();
