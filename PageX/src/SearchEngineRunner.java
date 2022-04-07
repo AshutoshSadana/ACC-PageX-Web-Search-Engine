@@ -98,6 +98,7 @@ public class SearchEngineRunner {
 				break;
 		  case 4:
 			  end_loop=1;
+			  break;
 
 			  	
 		}
