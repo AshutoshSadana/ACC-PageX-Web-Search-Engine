@@ -73,8 +73,7 @@ public class LRUCache {
             cachedFileNames.add(current.value);
         }
         System.out.println("cached pages are: " + cachedFileNames);
-        for (String fileName: cachedFileNames)
-            System.out.println(fileName);
+
 
     }
 
@@ -110,7 +109,6 @@ public class LRUCache {
             for (String element: cachedFileNames) {
 
                 if (entry.getValue() == element) {
-                    System.out.println("The key for value " + entry.getKey());
                     String sourceFileName = fileSource + entry.getKey();
                     String destinationFileName = fileDestination + entry.getKey();
                     copyFiles(sourceFileName, destinationFileName);

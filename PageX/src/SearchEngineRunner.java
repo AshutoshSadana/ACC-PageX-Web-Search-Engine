@@ -41,15 +41,15 @@ public class SearchEngineRunner {
 		HashMap<String, String> urlDict=Crawler.webCrawl(1,10,"https://piyushmehta.com",new ArrayList<String>());
 		//System.out.println(Arrays.asList(urlDict)); 
 		Scanner sc=new Scanner(System.in);
-		System.out.println("option 1 for searching word");
-		System.out.println("option 2 for searching word in cache");
-		System.out.println("option 3 for providing sugesstions to word");
-		System.out.println("option 4 for ending loop");
-		System.out.println("Enter your option");
-		Integer input_case = sc.nextInt();
-		int end_loop=0;
-		while(end_loop==0){
-		switch (input_case) {
+		System.out.println("====================Enter your option====================");
+		System.out.println("1 for searching word");
+		System.out.println("2 for searching word in cache");
+		System.out.println("3 for providing sugesstions to word");
+		
+		Integer choice = sc.nextInt();
+		int exitStatus = 0;
+		do{
+		switch (choice) {
 		  case 1:
 			  	System.out.println("Enter the word to be searched");
 			  	Scanner sc_1=new Scanner(System.in);
@@ -69,20 +69,31 @@ public class SearchEngineRunner {
 
 			  LRUCache lruCache = new LRUCache();
 			  System.out.println("Enter number of pages for caching purpose which should be less than   " + ((listOfPagesWithRank.size()) - 1));
+			
 			  Scanner integerInput = new Scanner(System.in);
+			  
 			  Integer totalPagesToBeCached = integerInput.nextInt();
+			  
 			  for (int i = 0; i < totalPagesToBeCached; i++) {
 				  System.out.println("Enter index of ranked list page");
 				  Integer index = integerInput.nextInt();
 				  lruCache.putElementInCache(index, listOfPagesWithRank.get(index));
 			  }
+			  
 			  lruCache.getFileNameFromCache();
+			  
 			  lruCache.storeToFolder(urlDict);
+			  
 			  Scanner wordScanner = new Scanner(System.in);
+			  
 			  System.out.println("Enter word to be searched in cache memory");
+			  
 			  String cache_word = wordScanner.nextLine();
+			  
 			  cachedRankingList = search_function(cache_word, cachedRankingList, "./cached_files/");
+			  
 			  int rankingListSize = cachedRankingList.size();
+			  
 			  if (rankingListSize <= 1) {
 				  System.out.println("word not found in cache so searching in main html page folder");
 				  search_function(cache_word, ranking_list_3, "./htmlToTextPages/");
@@ -96,15 +107,22 @@ public class SearchEngineRunner {
 				String sugesstion_word=sc_3.nextLine();
 				WordSuggestions.suggestWord(sugesstion_word);
 				break;
-		  case 4:
-			  end_loop=1;
+		 
+		  default:
+			  exitStatus=1;
 			  break;
 
 			  	
 		}
-		System.out.println("Enter your option");
-		input_case = sc.nextInt();
-		}
+		System.out.println("====================Enter your option====================");
+		
+		System.out.println("1 for searching word");
+		System.out.println("2 for searching word in cache");
+		System.out.println("3 for providing sugesstions to word");
+		
+		choice = sc.nextInt();
+		
+		} while(exitStatus == 0);
 
 	}
 	
