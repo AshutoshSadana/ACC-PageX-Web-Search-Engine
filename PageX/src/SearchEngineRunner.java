@@ -15,7 +15,7 @@ public class SearchEngineRunner {
         if (ranking_list.size() > 1) {
             for (String page: ranking_list) {
                 if (page != "sample")
-                    System.out.println(page);
+                    System.out.println("Occurance found in Page: " + page);
             }
         }
         if (ranking_list.size() <= 1) {
