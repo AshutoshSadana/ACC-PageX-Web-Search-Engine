@@ -30,7 +30,7 @@ public class SearchEngineRunner {
 
 	public static void main(String[] args) throws IOException {
 		List<String> listOfPagesWithRank=new ArrayList<String>();
-		List<String> ranking_list_2=new ArrayList<String>();
+		List<String> cachedRankingList=new ArrayList<String>();
 		List<String> ranking_list_3=new ArrayList<String>();
 		
 		Arrays.stream(new File("./htmlpages/").listFiles()).forEach(File::delete);
@@ -78,12 +78,12 @@ public class SearchEngineRunner {
 			  }
 			  lruCache.getFileNameFromCache();
 			  lruCache.storeToFolder(urlDict);
-			  Scanner sc_5 = new Scanner(System.in);
+			  Scanner wordScanner = new Scanner(System.in);
 			  System.out.println("Enter word to be searched in cache memory");
-			  String cache_word = sc_5.nextLine();
-			  ranking_list_2 = search_function(cache_word, ranking_list_2, "./cached_files/");
-			  int size_of_ranking_list = ranking_list_2.size();
-			  if (size_of_ranking_list <= 1) {
+			  String cache_word = wordScanner.nextLine();
+			  cachedRankingList = search_function(cache_word, cachedRankingList, "./cached_files/");
+			  int rankingListSize = cachedRankingList.size();
+			  if (rankingListSize <= 1) {
 				  System.out.println("word not found in cache so searching in main html page folder");
 				  search_function(cache_word, ranking_list_3, "./htmlToTextPages/");
 
