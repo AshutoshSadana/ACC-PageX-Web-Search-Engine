@@ -29,7 +29,7 @@ public class SearchEngineRunner {
 	}
 
 	public static void main(String[] args) throws IOException {
-		List<String> ranking_list_1=new ArrayList<String>();
+		List<String> listOfPagesWithRank=new ArrayList<String>();
 		List<String> ranking_list_2=new ArrayList<String>();
 		List<String> ranking_list_3=new ArrayList<String>();
 		
@@ -38,7 +38,7 @@ public class SearchEngineRunner {
 		Arrays.stream(new File("./cached_files/").listFiles()).forEach(File::delete);
 		System.out.println("Previous files cleared!");
 		
-		HashMap<String, String> urlDict=Crawler.webCrawl(1,10,"https://geeksforgeeks.org/",new ArrayList<String>());
+		HashMap<String, String> urlDict=Crawler.webCrawl(1,10,"https://piyushmehta.com",new ArrayList<String>());
 		//System.out.println(Arrays.asList(urlDict)); 
 		Scanner sc=new Scanner(System.in);
 		System.out.println("option 1 for searching word");
@@ -54,38 +54,42 @@ public class SearchEngineRunner {
 			  	System.out.println("Enter the word to be searched");
 			  	Scanner sc_1=new Scanner(System.in);
 			  	String search_word=sc_1.nextLine();
-			  	ranking_list_1=search_function(search_word,ranking_list_1,"./htmlToTextPages/");
+			  	listOfPagesWithRank=search_function(search_word,listOfPagesWithRank,"./htmlToTextPages/");
 				break;
+/**
+ * Case 2 caching by Piyush
+ * @author piyushmehta
+ */
 		  case 2:
-			  for(String page:ranking_list_1)
-				{
-					if(page!="sample")
+			  for (String page: listOfPagesWithRank) {
+				  //					Printing everything except sample just for testing
+				  if (page != "sample")
 					  System.out.println(page);
-				}
-				
-			  	LRUCache cache = new LRUCache();
-			  	System.out.println("Enter number of pages for caching purpose which should be less than   "+ranking_list_1.size());
-			  	Scanner sc_2=new Scanner(System.in);
-			  	Integer total_cach_pages=sc_2.nextInt();
-				for(int i=0;i<total_cach_pages;i++) {
-					System.out.println("Enter index of ranked list page");
-					Integer index=sc_2.nextInt();
-					cache.putElementInCache(index, ranking_list_1.get(index));
-					}
-				cache.getFileNameFromCache();
-				cache.storeToFolder(urlDict);
-				Scanner sc_5=new Scanner(System.in);
-				System.out.println("Enter word to be searched in cache memory");
-				String cache_word=sc_5.nextLine();
-				ranking_list_2=search_function(cache_word,ranking_list_2,"./cached_files/");
-				int size_of_ranking_list=ranking_list_2.size();
-				if (size_of_ranking_list<=1) {
-					System.out.println("word not found in cache so searching in main html page folder");
-					search_function(cache_word,ranking_list_3,"./htmlToTextPages/");
-					
-				}
-				
-				break;
+			  }
+
+			  LRUCache lruCache = new LRUCache();
+			  System.out.println("Enter number of pages for caching purpose which should be less than   " + ((listOfPagesWithRank.size()) - 1));
+			  Scanner integerInput = new Scanner(System.in);
+			  Integer totalPagesToBeCached = integerInput.nextInt();
+			  for (int i = 0; i < totalPagesToBeCached; i++) {
+				  System.out.println("Enter index of ranked list page");
+				  Integer index = integerInput.nextInt();
+				  lruCache.putElementInCache(index, listOfPagesWithRank.get(index));
+			  }
+			  lruCache.getFileNameFromCache();
+			  lruCache.storeToFolder(urlDict);
+			  Scanner sc_5 = new Scanner(System.in);
+			  System.out.println("Enter word to be searched in cache memory");
+			  String cache_word = sc_5.nextLine();
+			  ranking_list_2 = search_function(cache_word, ranking_list_2, "./cached_files/");
+			  int size_of_ranking_list = ranking_list_2.size();
+			  if (size_of_ranking_list <= 1) {
+				  System.out.println("word not found in cache so searching in main html page folder");
+				  search_function(cache_word, ranking_list_3, "./htmlToTextPages/");
+
+			  }
+
+			  break;
 		  case 3:
 			  	System.out.println("Enter a word to find alternate suggesions for it");
 			  	Scanner sc_3=new Scanner(System.in);

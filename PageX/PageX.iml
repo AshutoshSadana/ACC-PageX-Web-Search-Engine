@@ -106,15 +106,6 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="Text Processing">
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/drivers/Text Processing" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
       <library name="Algorithm Design">
         <CLASSES>
           <root url="file://$MODULE_DIR$/drivers/Algorithm Design" />
@@ -123,5 +114,7 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="Text Processing" level="project" />
+    <orderEntry type="library" name="Text Processing1" level="project" />
   </component>
 </module>
