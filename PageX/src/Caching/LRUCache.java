@@ -34,10 +34,10 @@ class Cache {
  */
 public class LRUCache {
 
-    static Map <Integer, Cache> map = new HashMap<>();
-    static Deque <Integer> deque = new LinkedList<>();
+    static Map < Integer, Cache > map = new HashMap < > ();
+    static Deque < Integer > deque = new LinkedList < > ();
     int CACHE_CAPACITY = 4;
-    static List <String> cachedFileNames = new ArrayList<String>();
+    static List < String > cachedFileNames = new ArrayList < String > ();
 
     /**
      * This method adds an element to the cache.
@@ -102,7 +102,7 @@ public class LRUCache {
      * @param urlDict
      * @author piyushmehta
      */
-    public void addCachedPages(HashMap < String, String > urlDict) {
+    public void storeToFolder(HashMap < String, String > urlDict) {
         String fileSource = "./htmlToTextPages/";
         String fileDestination = "./cached_files/";
         for (Entry < String, String > entry: urlDict.entrySet()) {
@@ -111,9 +111,9 @@ public class LRUCache {
 
                 if (entry.getValue() == element) {
                     System.out.println("The key for value " + entry.getKey());
-                    String s_file_name = fileSource + entry.getKey();
-                    String d_file_name = fileDestination + entry.getKey();
-                    copyFiles(s_file_name, d_file_name);
+                    String sourceFileName = fileSource + entry.getKey();
+                    String destinationFileName = fileDestination + entry.getKey();
+                    copyFiles(sourceFileName, destinationFileName);
                     break;
 
                 }
