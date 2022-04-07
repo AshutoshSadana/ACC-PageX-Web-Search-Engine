@@ -72,7 +72,7 @@ public class SearchEngineRunner {
 					Integer index=sc_2.nextInt();
 					cache.putElementInCache(index, ranking_list_1.get(index));
 					}
-				cache.populateCachePages();
+				cache.getFileNameFromCache();
 				cache.addCachedPages(urlDict);
 				Scanner sc_5=new Scanner(System.in);
 				System.out.println("Enter word to be searched in cache memory");

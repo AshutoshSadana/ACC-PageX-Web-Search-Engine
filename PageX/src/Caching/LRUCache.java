@@ -67,14 +67,14 @@ public class LRUCache {
      *
      * @author piyushmehta
      */
-    public void populateCachePages() {
+    public void getFileNameFromCache() {
         for (Integer item: deque) {
             Cache current = map.get(item);
             cachedFileNames.add(current.value);
         }
         System.out.println("cached pages are: " + cachedFileNames);
-        for (String fruit: cachedFileNames)
-            System.out.println(fruit);
+        for (String fileName: cachedFileNames)
+            System.out.println(fileName);
 
     }
 
