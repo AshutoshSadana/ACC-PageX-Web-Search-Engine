@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.*;
 
 import Caching.LRUCache;
+import yodafy.YodaMode;
 
 
 public class SearchEngineRunner {
@@ -42,6 +43,7 @@ public class SearchEngineRunner {
 			System.out.println("1 for searching word");
 			System.out.println("2 for searching word in cache");
 			System.out.println("3 for providing sugesstions to word");
+			System.out.println("4 for checking how yoda will speak your sentence *experimental* *STAR WARS ALERT*");
 
 			Integer choice = sc.nextInt();
 			int exitStatus = 0;
@@ -107,19 +109,24 @@ public class SearchEngineRunner {
 			            String sugesstion_word = sc_3.nextLine();
 			            WordSuggestions.suggestWord(sugesstion_word);
 			            break;
-
+			        case 4:
+			            System.out.println("Enter a sentance to find how yoda will speak it");
+						  Scanner sc_4=new Scanner(System.in);
+						  String input_word=sc_4.nextLine();
+					      YodaMode lem = new YodaMode();
+					      System.out.println(lem.lemmatize(input_word));
 			        default:
 			            exitStatus = 1;
 			            break;
 
 
 			    }
+			    
 			    System.out.println("====================Enter your option====================");
-
 			    System.out.println("1 for searching word");
 			    System.out.println("2 for searching word in cache");
 			    System.out.println("3 for providing sugesstions to word");
-
+			    System.out.println("4 for checking how yoda will speak your sentence *experimental* *STAR WARS ALERT*");
 			    choice = sc.nextInt();
 			    
 			} while (exitStatus == 0);
