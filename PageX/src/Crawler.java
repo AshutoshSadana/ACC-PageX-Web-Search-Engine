@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.*;
+import java.util.regex.Pattern;
+
 import org.jsoup.*;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -16,15 +18,18 @@ import org.apache.commons.io.FilenameUtils;
  */
 public class Crawler {
 	public static final int maxDepth=2;
+	public static final String URL_pattern = "((http|https)://)(www.)?[a-zA-Z0-9@:%.\\+~#?&//=]{2,256}\\.[a-z]{2,6}([-a-zA-Z0-9@:%.\\+~#?&//=]*)";
+	
 	public static HashMap<String, String> urlDict = new HashMap<String, String>(); // This will store url to filename mapping
 	public static HashMap<String, String> webCrawl(int depth,int count, String url,ArrayList<String> visited) {
 		
-		if (depth <= maxDepth && count>=0) {
+		if (depth <= maxDepth && !checkURL(url) && count>=0) {
 			Document doc = request(url,visited);
 			
 			if(doc!=null && count>=0) {
 			for(Element link : doc.select("a[href]")) {
 				String nextLink = link.absUrl("href");
+				
 				if(visited.contains(nextLink) == false && count>=0) {
 					count--;
 					//System.out.println(count);
@@ -60,6 +65,7 @@ public class Crawler {
 		catch(IOException e) {
 			return null;
 		}
+		
 	}
 	public static void addToDictionary(final String filenumber, final String fileLink){
 		String temp = (filenumber+".txt");
@@ -124,6 +130,12 @@ public class Crawler {
 	            e.printStackTrace();
 	        }
 		
+	}
+	
+	private static boolean checkURL(String url) {
+		if (url != null && url != "" && Pattern.matches(URL_pattern, url))
+			return false;
+		return true;
 	}
 	
 

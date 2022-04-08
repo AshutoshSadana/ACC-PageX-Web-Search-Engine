@@ -58,7 +58,7 @@ public class WordSuggestions {
 		t = t.replaceAll("\\p{Punct}", "");
 		
 		ArrayList <String> list = new ArrayList<>();
-		//I have used String Tokenizer to extract words from the file Protein.txt
+
 		StringTokenizer token = new StringTokenizer(t," ");
 		while(token.hasMoreTokens()) {
 			list.add(token.nextToken());

@@ -16,8 +16,9 @@ public class SearchingWord {
 	public static List<String>ranking_list=new ArrayList<String>();
 	
 	public static List<String> searchWord(String word,String folder_address) throws IOException {
+		
 		//System.out.println(folder_address);
-		//System.out.println(word);
+		System.out.println();
 		File folder = new File(folder_address);
 		Integer documents_containing_key_word =0;
 		File[] allFiles = folder.listFiles();
@@ -25,7 +26,8 @@ public class SearchingWord {
 		//System.out.println(allFiles.length);
 		for(int i=0;i<allFiles.length;i++) {
 	        int count=wordSearch(allFiles[i],word);
-	        System.out.println(Crawler.urlDict.get(allFiles[i].getName())+" number of occurences: "+ count);
+	        System.out.println(Crawler.urlDict.get(allFiles[i].getName())+"\n===>  number of occurences: "+ count);
+	        System.out.println();
 			urlOccurrences.put(Crawler.urlDict.get(allFiles[i].getName()),count);
 			if (count>=1) {
 				documents_containing_key_word=documents_containing_key_word+1;				
@@ -38,7 +40,7 @@ public class SearchingWord {
 		urlOccurrences.clear();
 		urlWordCount.clear();
 		tf_idf_score.clear();
-		
+		System.out.println();
 		return ranking_list;
 		
 	       

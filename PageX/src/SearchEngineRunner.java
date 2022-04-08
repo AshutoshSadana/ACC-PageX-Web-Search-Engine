@@ -36,7 +36,7 @@ public class SearchEngineRunner {
         Arrays.stream(new File("./cached_files/").listFiles()).forEach(File::delete);
         System.out.println("Previous files cleared!");
 
-        HashMap < String, String > urlDict = Crawler.webCrawl(1, 10, "https://piyushmehta.com", new ArrayList < String > ());
+        HashMap < String, String > urlDict = Crawler.webCrawl(1, 10, "https://www.geeksforgeeks.org/", new ArrayList < String > ());
         try (Scanner sc = new Scanner(System.in)) {
 			System.out.println("====================Enter your option====================");
 			System.out.println("1 for searching word");
