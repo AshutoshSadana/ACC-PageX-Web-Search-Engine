@@ -21,6 +21,8 @@ public class Crawler {
 	public static final String URL_pattern = "((http|https)://)(www.)?[a-zA-Z0-9@:%.\\+~#?&//=]{2,256}\\.[a-z]{2,6}([-a-zA-Z0-9@:%.\\+~#?&//=]*)";
 	
 	public static HashMap<String, String> urlDict = new HashMap<String, String>(); // This will store url to filename mapping
+	
+	
 	public static HashMap<String, String> webCrawl(int depth,int count, String url,ArrayList<String> visited) {
 		
 		if (depth <= maxDepth && !checkURL(url) && count>=0) {
@@ -56,7 +58,7 @@ public class Crawler {
 				int i = v.indexOf(url);
 				String fileNumber = Integer.toString(i);
 				String fileLink = url;
-				saveUrl(fileNumber, fileLink);
+				downloadURL(fileNumber, fileLink);
 				addToDictionary(fileNumber, fileLink);
 				return doc;
 			}
@@ -74,37 +76,39 @@ public class Crawler {
 		
 	}
 	
-	public static void saveUrl(final String filename, final String urlString) throws IOException {
+	
+	///Downloads the html page at url and stores it in local repository.
+	public static void downloadURL(final String filename, final String urlString) throws IOException {
 
 		{
 			
 			try {
 
-				// Create myURL object
-				URL url = new URL(urlString);
-				BufferedReader my_readr = new BufferedReader(new InputStreamReader(url.openStream()));
 
-				// Enter filename in which you want to download
+				URL url = new URL(urlString);
+				String nextLine;
+				
+				BufferedReader reader1 = new BufferedReader(new InputStreamReader(url.openStream()));
+
 				String str = filename + ".html";
 
-				BufferedWriter my_writer = new BufferedWriter(
+				BufferedWriter writer1 = new BufferedWriter(
 						new FileWriter("./htmlpages/" + str));
 				
 
-				// read each line from stream till end
-				String line;
-				while ((line = my_readr.readLine()) != null) {
-					my_writer.write(line);
+
+
+				while ((nextLine = reader1.readLine()) != null) {
+					writer1.write(nextLine);
 				}
 
-				my_readr.close();
-				my_writer.close();
+				reader1.close();
+				writer1.close();
 				System.out.println("Successfully Downloaded.");
+				
 				//Converts Html files to text
 				htmlToText();	
 			}
-
-			// Exceptions
 			
 			catch (IOException e) {
 				System.out.println("IOException raised");
