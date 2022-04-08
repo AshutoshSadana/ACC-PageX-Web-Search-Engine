@@ -12,7 +12,8 @@ public class SearchEngineRunner {
 
     public static List < String > search_function(String search_word, List < String > ranking_list, String folder_name) throws IOException {
         ranking_list = SearchingWord.searchWord(search_word, folder_name);
-        System.out.println("List of files in order of occurances (Desc)");
+        System.out.println("");
+        System.out.println("List of files in order of Score");
         if (ranking_list.size() > 1) {
             for (String page: ranking_list) {
                 if (page != "sample") {
@@ -106,18 +107,22 @@ public class SearchEngineRunner {
 			            }
 
 			            break;
+			            
 			        case 3:
 			            System.out.println("Enter a word to find alternate suggesions for it");
 			            Scanner sc_3 = new Scanner(System.in);
 			            String sugesstion_word = sc_3.nextLine();
 			            WordSuggestions.suggestWord(sugesstion_word);
 			            break;
+			            
 			        case 4:
 			            System.out.println("Enter a sentance to find how yoda will speak it");
 						  Scanner sc_4=new Scanner(System.in);
 						  String input_word=sc_4.nextLine();
 					      YodaMode lem = new YodaMode();
 					      System.out.println(lem.lemmatize(input_word));
+					      break;
+					      
 			        default:
 			            exitStatus = 1;
 			            break;
