@@ -41,16 +41,17 @@ public class SearchEngineRunner {
 		Arrays.stream(new File("./cached_files/").listFiles()).forEach(File::delete);
 		System.out.println("Done");
 		
-		HashMap<String, String> urlDict=Crawler.webCrawl(1,5,"https://en.wikipedia.org/wiki/Computer",new ArrayList<String>());
+		HashMap<String, String> urlDict=Crawler.webCrawl(1,5,"https://www.geeksforgeeks.org/",new ArrayList<String>());
 		System.out.println(Arrays.asList(urlDict)); 
 		Scanner sc=new Scanner(System.in);
 		System.out.println("option 1 for searching word");
 		System.out.println("option 2 for searching word in cache");
 		System.out.println("option 3 for providing sugesstions to word");
-		System.out.println("option 4 for ending loop");
+		System.out.println("option 4 for finding root word");
 		System.out.println("Enter your option");
 		Integer input_case = sc.nextInt();
 		int end_loop=0;
+		
 		while(end_loop==0){
 		switch (input_case) {
 		  case 1:
@@ -97,7 +98,12 @@ public class SearchEngineRunner {
 				WordSuggestions.suggestWord(sugesstion_word);
 				break;
 		  case 4:
-			  end_loop=1;
+			  System.out.println("Enter a sentance to find its root words");
+			  Scanner sc_4=new Scanner(System.in);
+			  String input_word=sc_4.nextLine();
+		      lemetization slem = new lemetization();
+		      System.out.println(slem.lemmatize(input_word));
+			  break;
 			  	
 		}
 		System.out.println("Enter your option");
