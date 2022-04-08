@@ -15,10 +15,13 @@ public class SearchEngineRunner {
         System.out.println("List of files in order of occurances (Desc)");
         if (ranking_list.size() > 1) {
             for (String page: ranking_list) {
-                if (page != "sample")
-                    System.out.println("Occurance found in Page: " + page);
+                if (page != "sample") {
+                    System.out.printf("Occurance found in Page: " + page + "\n");
+                }
             }
         }
+        System.out.printf("\n");
+
         if (ranking_list.size() <= 1) {
             System.out.println("word not found");
 
@@ -53,7 +56,7 @@ public class SearchEngineRunner {
 			            System.out.println("Enter the word to be searched");
 			            Scanner sc_1 = new Scanner(System.in);
 			            String search_word = sc_1.nextLine();
-			            listOfPagesWithRank = search_function(search_word, listOfPagesWithRank, "./htmlToTextPages/");
+			            listOfPagesWithRank = search_function(search_word.toLowerCase(), listOfPagesWithRank, "./htmlToTextPages/");
 			            break;
 			            /**
 			             * Case 2 caching by Piyush
@@ -92,7 +95,7 @@ public class SearchEngineRunner {
 
 			            String cache_word = wordScanner.nextLine();
 
-			            cachedRankingList = search_function(cache_word, cachedRankingList, "./cached_files/");
+			            cachedRankingList = search_function(cache_word.toLowerCase(), cachedRankingList, "./cached_files/");
 
 			            int rankingListSize = cachedRankingList.size();
 

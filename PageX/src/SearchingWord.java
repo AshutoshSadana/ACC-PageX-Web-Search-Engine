@@ -16,25 +16,27 @@ public class SearchingWord {
 	public static List<String>ranking_list=new ArrayList<String>();
 	
 	public static List<String> searchWord(String word,String folder_address) throws IOException {
-		//System.out.println(folder_address);
-		//System.out.println(word);
+
+
 		File folder = new File(folder_address);
 		Integer documents_containing_key_word =0;
 		File[] allFiles = folder.listFiles();
-		//System.out.println("length of files");
-		//System.out.println(allFiles.length);
+
 		for(int i=0;i<allFiles.length;i++) {
 	        int count=wordSearch(allFiles[i],word);
-	        System.out.println(Crawler.urlDict.get(allFiles[i].getName())+" number of occurences: "+ count);
+	        System.out.println("=========================");
+	        System.out.println(Crawler.urlDict.get(allFiles[i].getName()));
+	        System.out.println("Number of Occurences: " + count);
 			urlOccurrences.put(Crawler.urlDict.get(allFiles[i].getName()),count);
+			System.out.println("=========================");
 			if (count>=1) {
 				documents_containing_key_word=documents_containing_key_word+1;				
 			}
 			
 		}
 		
-		tf_idf_score=tf_idf_new.compute_tf_idf(urlOccurrences,urlWordCount,documents_containing_key_word);
-		ranking_list=tf_idf_new.populate_heap(tf_idf_score);
+		tf_idf_score=tf_idf_new.computeTFIDF(urlOccurrences,urlWordCount,documents_containing_key_word);
+		ranking_list=tf_idf_new.populateHeap(tf_idf_score);
 		urlOccurrences.clear();
 		urlWordCount.clear();
 		tf_idf_score.clear();
